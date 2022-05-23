@@ -2,6 +2,7 @@
 let currentNumArr =[];
 let allNumArr = [];
 let operatorArr = [];
+let tempResultArr = [];
 
 const resultArea = document.querySelector(".result-area");
 
@@ -10,6 +11,11 @@ const operatorButtons = document.querySelectorAll(".operator-buttons");
 const equalButton = document.querySelector(".equal-button");
 
 function selectNumber(e) {
+
+  if(tempResultArr.length > 0){
+    allNumArr.push(tempResultArr.pop());
+    currentNumArr.length = 0;
+  }
 
   let number = e.srcElement.value;
   currentNumArr.push(number);
@@ -78,17 +84,13 @@ function selectOperator(e) {
 
   function equalCalculate(){
     if(currentNumArr.length == 0) return;
-
+    if(allNumArr.length == 0) return;
     allNumArr.push(Number(currentNumArr.join("")));
 
     let result = calculate();
-    currentNumArr.length = 0;
+    tempResultArr.push(result);
     currentNumArr.push(result);
 
-    console.log(result);
-    console.log(currentNumArr);
-    console.log(allNumArr);
-    console.log(operatorArr[0]);
   }
 
   function add(a,b){
@@ -106,9 +108,6 @@ function selectOperator(e) {
   function divide(a,b){
     return Number(a / b);
   }
-
-
-
 
 
 allButtons.forEach(button => button.addEventListener("click", selectNumber));
