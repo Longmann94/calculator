@@ -1,23 +1,54 @@
 .flex-container {
  display: flex;
- flex-flow: row-reverse wrap;
- justify-content: flex-end;
-
+ flex-flow: row wrap;
+ padding-top: 3rem;
+ margin-left: 30%;
+ margin-right: 30%;
 }
 
-.number-buttons {
-  width: 50px;
-  height: 50px;
-  flex: 1 0 33%;
+.number-container{
+  display: flex;
+  flex-flow: row wrap;
+  flex: 1 0 40%;
 }
 
-.operator-buttons {
+.number-container button {
   width: 50px;
-  height: 50px;
+  height: 70px;
   flex: 1 0 33%;
+  background-color: Snow;
+  color: SlateGray;
+  font-weight: bold;
+}
+
+.sidebar{
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.sidebar button {
+  width: 60px;
+  height: 60px;
+  flex: 1 0 20%;
+  background-color: Salmon;
+  color: White;
+  font-weight: bold;
 }
 
 .result-area {
   display: flex;
   justify-content: center;
+  flex-wrap: nowrap;
+  padding: 5rem;
+  border: 3px solid;
+  margin: 10% 30% 0 30%;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  background-color: Azure;
+  color: DimGray;
+}
+
+.footer {
+  text-align: center;
 }

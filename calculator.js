@@ -5,11 +5,20 @@ let operatorArr = [];
 let tempResultArr = [];
 
 const resultArea = document.querySelector(".result-area");
-
 const allButtons = document.querySelectorAll(".number-buttons");
 const operatorButtons = document.querySelectorAll(".operator-buttons");
 const equalButton = document.querySelector(".equal-button");
+const clearButton = document.querySelector(".clear-button");
 
+//clear all data in calculator
+function clearCalculator() {
+  currentNumArr.length = 0;
+  allNumArr.length = 0;
+  operatorArr.length = 0;
+  tempResultArr.length = 0;
+  resultArea.innerHTML = "";
+}
+//selecting numbers
 function selectNumber(e) {
 
   if(tempResultArr.length > 0){
@@ -46,6 +55,7 @@ function selectOperator(e) {
   operatorArr.push(operator);
   }
 
+//calculate numbers and operator selected
   function calculate(){
     if(allNumArr.length >= 2){
       if(operatorArr[0] == "+"){
@@ -82,6 +92,7 @@ function selectOperator(e) {
     currentNumArr.length = 0;
   }
 
+//equal button
   function equalCalculate(){
     if(currentNumArr.length == 0) return;
     if(allNumArr.length == 0) return;
@@ -90,26 +101,31 @@ function selectOperator(e) {
     let result = calculate();
     tempResultArr.push(result);
     currentNumArr.push(result);
-
   }
 
+//round numbers to 3 decimal place
+function rounded(num){
+  return Math.round(num * 1000) / 1000;
+}
+
+//all the math functions
   function add(a,b){
-    return Number(a + b);
+    return rounded(Number(a + b));
   }
 
   function subtract(a,b){
-    return Number(a - b);
+    return rounded(Number(a - b));
   }
 
   function multiply(a,b){
-    return Number(a * b);
+    return rounded(Number(a * b));
   }
 
   function divide(a,b){
-    return Number(a / b);
+    return rounded(Number(a / b));
   }
-
 
 allButtons.forEach(button => button.addEventListener("click", selectNumber));
 operatorButtons.forEach(button => button.addEventListener("click", selectOperator));
 equalButton.addEventListener("click", equalCalculate);
+clearButton.addEventListener("click", clearCalculator);
